@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VehicleCreateDlg" widgetVar="VehicleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateVehicleTitle}">
+            <h:form id="VehicleCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vehicleController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{vehicleController.selected.id}" title="#{bundle.CreateVehicleTitle_id}" required="true" requiredMessage="#{bundle.CreateVehicleRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{vehicleController.selected.name}" title="#{bundle.CreateVehicleTitle_name}" />
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_description}" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{vehicleController.selected.description}" title="#{bundle.CreateVehicleTitle_description}" />
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_odometerNextMaintainence}" for="odometerNextMaintainence" />
+                        <p:inputText id="odometerNextMaintainence" value="#{vehicleController.selected.odometerNextMaintainence}" title="#{bundle.CreateVehicleTitle_odometerNextMaintainence}" />
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_picture}" for="picture" />
+                        <p:inputTextarea rows="4" cols="30" id="picture" value="#{vehicleController.selected.picture}" title="#{bundle.CreateVehicleTitle_picture}" />
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_dateEntered}" for="dateEntered" />
+                        <p:calendar id="dateEntered" pattern="MM/dd/yyyy HH:mm:ss" value="#{vehicleController.selected.dateEntered}" title="#{bundle.EditVehicleTitle_dateEntered}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_dateModified}" for="dateModified" />
+                        <p:calendar id="dateModified" pattern="MM/dd/yyyy HH:mm:ss" value="#{vehicleController.selected.dateModified}" title="#{bundle.EditVehicleTitle_dateModified}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_createdBy}" for="createdBy" />
+                        <p:selectOneMenu id="createdBy" value="#{vehicleController.selected.createdBy}" required="true" requiredMessage="#{bundle.EditVehicleRequiredMessage_createdBy}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="createdByItem"
+                                           itemValue="#{createdByItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateVehicleLabel_modifiedUserId}" for="modifiedUserId" />
+                        <p:selectOneMenu id="modifiedUserId" value="#{vehicleController.selected.modifiedUserId}" >
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="modifiedUserIdItem"
+                                           itemValue="#{modifiedUserIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vehicleController.create}" value="#{bundle.Save}" update="display,:VehicleListForm:datalist,:growl" oncomplete="handleSubmit(args,'VehicleCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VehicleCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

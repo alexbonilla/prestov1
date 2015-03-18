@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContactViewDlg" widgetVar="ContactViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewContactTitle}">
+            <h:form id="ContactViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contactController.selected != null}">
+                        <h:outputText value="#{bundle.ViewContactLabel_id}"/>
+                        <h:outputText value="#{contactController.selected.id}" title="#{bundle.ViewContactTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_firstName}"/>
+                        <h:outputText value="#{contactController.selected.firstName}" title="#{bundle.ViewContactTitle_firstName}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_lastName}"/>
+                        <h:outputText value="#{contactController.selected.lastName}" title="#{bundle.ViewContactTitle_lastName}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_description}"/>
+                        <h:outputText value="#{contactController.selected.description}" title="#{bundle.ViewContactTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_title}"/>
+                        <h:outputText value="#{contactController.selected.title}" title="#{bundle.ViewContactTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_department}"/>
+                        <h:outputText value="#{contactController.selected.department}" title="#{bundle.ViewContactTitle_department}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_doNotCall}"/>
+                        <p:selectBooleanCheckbox value="#{contactController.selected.doNotCall}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_phoneHome}"/>
+                        <h:outputText value="#{contactController.selected.phoneHome}" title="#{bundle.ViewContactTitle_phoneHome}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_phoneMobile}"/>
+                        <h:outputText value="#{contactController.selected.phoneMobile}" title="#{bundle.ViewContactTitle_phoneMobile}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_phoneWork}"/>
+                        <h:outputText value="#{contactController.selected.phoneWork}" title="#{bundle.ViewContactTitle_phoneWork}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_phoneOther}"/>
+                        <h:outputText value="#{contactController.selected.phoneOther}" title="#{bundle.ViewContactTitle_phoneOther}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_phoneFax}"/>
+                        <h:outputText value="#{contactController.selected.phoneFax}" title="#{bundle.ViewContactTitle_phoneFax}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_primaryAddressStreet}"/>
+                        <h:outputText value="#{contactController.selected.primaryAddressStreet}" title="#{bundle.ViewContactTitle_primaryAddressStreet}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_primaryAddressCity}"/>
+                        <h:outputText value="#{contactController.selected.primaryAddressCity}" title="#{bundle.ViewContactTitle_primaryAddressCity}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_primaryAddressState}"/>
+                        <h:outputText value="#{contactController.selected.primaryAddressState}" title="#{bundle.ViewContactTitle_primaryAddressState}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_primaryAddressCountry}"/>
+                        <h:outputText value="#{contactController.selected.primaryAddressCountry}" title="#{bundle.ViewContactTitle_primaryAddressCountry}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_dateEntered}"/>
+                        <h:outputText value="#{contactController.selected.dateEntered}" title="#{bundle.ViewContactTitle_dateEntered}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewContactLabel_dateModified}"/>
+                        <h:outputText value="#{contactController.selected.dateModified}" title="#{bundle.ViewContactTitle_dateModified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>                        
+                        <h:outputText value="#{bundle.ViewContactLabel_email}"/>
+                        <h:outputText value="#{contactController.selected.email}" title="#{bundle.ViewContactTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_assignedUserId}"/>
+                        <h:outputText value="#{contactController.selected.assignedUserId.userLogin}" title="#{bundle.ViewContactTitle_assignedUserId}"/>                        
+                        <h:outputText value="#{bundle.ViewContactLabel_createdBy}"/>
+                        <h:outputText value="#{contactController.selected.createdBy.userLogin}" title="#{bundle.ViewContactTitle_createdBy}"/>
+                        <h:outputText value="#{bundle.ViewContactLabel_modifiedUserId}"/>
+                        <h:outputText value="#{contactController.selected.modifiedUserId.userLogin}" title="#{bundle.ViewContactTitle_modifiedUserId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ContactViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

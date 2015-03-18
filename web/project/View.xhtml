@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectViewDlg" widgetVar="ProjectViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProjectTitle}">
+            <h:form id="ProjectViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProjectLabel_id}"/>
+                        <h:outputText value="#{projectController.selected.id}" title="#{bundle.ViewProjectTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_dateEntered}"/>
+                        <h:outputText value="#{projectController.selected.dateEntered}" title="#{bundle.ViewProjectTitle_dateEntered}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjectLabel_dateModiied}"/>
+                        <h:outputText value="#{projectController.selected.dateModiied}" title="#{bundle.ViewProjectTitle_dateModiied}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjectLabel_name}"/>
+                        <h:outputText value="#{projectController.selected.name}" title="#{bundle.ViewProjectTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_description}"/>
+                        <h:outputText value="#{projectController.selected.description}" title="#{bundle.ViewProjectTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_estimatedStartDate}"/>
+                        <h:outputText value="#{projectController.selected.estimatedStartDate}" title="#{bundle.ViewProjectTitle_estimatedStartDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjectLabel_estimatedEndDate}"/>
+                        <h:outputText value="#{projectController.selected.estimatedEndDate}" title="#{bundle.ViewProjectTitle_estimatedEndDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjectLabel_status}"/>
+                        <h:outputText value="#{projectController.selected.status}" title="#{bundle.ViewProjectTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_priority}"/>
+                        <h:outputText value="#{projectController.selected.priority}" title="#{bundle.ViewProjectTitle_priority}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_assignedUserId}"/>
+                        <h:outputText value="#{projectController.selected.assignedUserId}" title="#{bundle.ViewProjectTitle_assignedUserId}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_createdBy}"/>
+                        <h:outputText value="#{projectController.selected.createdBy}" title="#{bundle.ViewProjectTitle_createdBy}"/>
+                        <h:outputText value="#{bundle.ViewProjectLabel_modifiedUserId}"/>
+                        <h:outputText value="#{projectController.selected.modifiedUserId}" title="#{bundle.ViewProjectTitle_modifiedUserId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProjectViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

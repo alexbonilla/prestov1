@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContactEditDlg" widgetVar="ContactEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditContactTitle}">
+            <p:scrollPanel mode="native" style="max-height:400px">
+                <h:form id="ContactEditForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{contactController.selected != null}">
+                            <p:outputLabel value="#{bundle.EditContactLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{contactController.selected.id}" title="#{bundle.EditContactTitle_id}" required="true" requiredMessage="#{bundle.EditContactRequiredMessage_id}" disabled="true"/>
+                            <p:outputLabel value="#{bundle.EditContactLabel_firstName}" for="firstName" />
+                            <p:inputText id="firstName" value="#{contactController.selected.firstName}" title="#{bundle.EditContactTitle_firstName}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_lastName}" for="lastName" />
+                            <p:inputText id="lastName" value="#{contactController.selected.lastName}" title="#{bundle.EditContactTitle_lastName}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_description}" for="description" />
+                            <p:inputTextarea rows="4" cols="30" id="description" value="#{contactController.selected.description}" title="#{bundle.EditContactTitle_description}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_title}" for="title" />
+                            <p:inputText id="title" value="#{contactController.selected.title}" title="#{bundle.EditContactTitle_title}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_department}" for="department" />
+                            <p:inputText id="department" value="#{contactController.selected.department}" title="#{bundle.EditContactTitle_department}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_doNotCall}" for="doNotCall" />
+                            <p:selectBooleanCheckbox id="doNotCall" value="#{contactController.selected.doNotCall}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_phoneHome}" for="phoneHome" />
+                            <p:inputText id="phoneHome" value="#{contactController.selected.phoneHome}" title="#{bundle.EditContactTitle_phoneHome}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_phoneMobile}" for="phoneMobile" />
+                            <p:inputText id="phoneMobile" value="#{contactController.selected.phoneMobile}" title="#{bundle.EditContactTitle_phoneMobile}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_phoneWork}" for="phoneWork" />
+                            <p:inputText id="phoneWork" value="#{contactController.selected.phoneWork}" title="#{bundle.EditContactTitle_phoneWork}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_phoneOther}" for="phoneOther" />
+                            <p:inputText id="phoneOther" value="#{contactController.selected.phoneOther}" title="#{bundle.EditContactTitle_phoneOther}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_phoneFax}" for="phoneFax" />
+                            <p:inputText id="phoneFax" value="#{contactController.selected.phoneFax}" title="#{bundle.EditContactTitle_phoneFax}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_primaryAddressStreet}" for="primaryAddressStreet" />
+                            <p:inputText id="primaryAddressStreet" value="#{contactController.selected.primaryAddressStreet}" title="#{bundle.EditContactTitle_primaryAddressStreet}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_primaryAddressCity}" for="primaryAddressCity" />
+                            <p:inputText id="primaryAddressCity" value="#{contactController.selected.primaryAddressCity}" title="#{bundle.EditContactTitle_primaryAddressCity}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_primaryAddressState}" for="primaryAddressState" />
+                            <p:inputText id="primaryAddressState" value="#{contactController.selected.primaryAddressState}" title="#{bundle.EditContactTitle_primaryAddressState}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_primaryAddressCountry}" for="primaryAddressCountry" />
+                            <p:inputText id="primaryAddressCountry" value="#{contactController.selected.primaryAddressCountry}" title="#{bundle.EditContactTitle_primaryAddressCountry}" />
+                            <p:outputLabel value="#{bundle.EditContactLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{contactController.selected.email}" title="#{bundle.EditContactTitle_email}" />                            
+                            <p:outputLabel value="#{bundle.EditContactLabel_assignedUserId}" for="assignedUserId" />
+                            <p:selectOneMenu id="assignedUserId" value="#{contactController.selected.assignedUserId}" required="true" requiredMessage="#{bundle.EditContactRequiredMessage_assignedUserId}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                               var="assignedUserIdItem"
+                                               itemValue="#{assignedUserIdItem}"
+                                               itemLabel="#{assignedUserIdItem.userLogin}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:commandButton actionListener="#{contactController.update}" value="#{bundle.Save}" update="display,:ContactListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ContactEditDialog');"/>
+                        <p:commandButton value="#{bundle.Cancel}" onclick="ContactEditDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:scrollPanel>
+        </p:dialog>
+
+    </ui:composition>
+</html>

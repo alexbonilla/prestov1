@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TourCreateDlg" widgetVar="TourCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTourTitle}">
+            <h:form id="TourCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tourController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTourLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{tourController.selected.id}" title="#{bundle.CreateTourTitle_id}" required="true" requiredMessage="#{bundle.CreateTourRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateTourLabel_odometerStart}" for="odometerStart" />
+                        <p:inputText id="odometerStart" value="#{tourController.selected.odometerStart}" title="#{bundle.CreateTourTitle_odometerStart}" />
+                        <p:outputLabel value="#{bundle.CreateTourLabel_odometerEnd}" for="odometerEnd" />
+                        <p:inputText id="odometerEnd" value="#{tourController.selected.odometerEnd}" title="#{bundle.CreateTourTitle_odometerEnd}" />
+                        <p:outputLabel value="#{bundle.CreateTourLabel_tourDate}" for="tourDate" />
+                        <p:calendar id="tourDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{tourController.selected.tourDate}" title="#{bundle.EditTourTitle_tourDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTourLabel_observations}" for="observations" />
+                        <p:inputTextarea rows="4" cols="30" id="observations" value="#{tourController.selected.observations}" title="#{bundle.CreateTourTitle_observations}" />
+                        <p:outputLabel value="#{bundle.CreateTourLabel_dateEntered}" for="dateEntered" />
+                        <p:calendar id="dateEntered" pattern="MM/dd/yyyy HH:mm:ss" value="#{tourController.selected.dateEntered}" title="#{bundle.EditTourTitle_dateEntered}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTourLabel_dateModified}" for="dateModified" />
+                        <p:calendar id="dateModified" pattern="MM/dd/yyyy HH:mm:ss" value="#{tourController.selected.dateModified}" title="#{bundle.EditTourTitle_dateModified}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTourLabel_createdBy}" for="createdBy" />
+                        <p:selectOneMenu id="createdBy" value="#{tourController.selected.createdBy}" required="true" requiredMessage="#{bundle.EditTourRequiredMessage_createdBy}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="createdByItem"
+                                           itemValue="#{createdByItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTourLabel_modifiedUserId}" for="modifiedUserId" />
+                        <p:selectOneMenu id="modifiedUserId" value="#{tourController.selected.modifiedUserId}" >
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="modifiedUserIdItem"
+                                           itemValue="#{modifiedUserIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTourLabel_vehiclesId}" for="vehiclesId" />
+                        <p:selectOneMenu id="vehiclesId" value="#{tourController.selected.vehiclesId}" required="true" requiredMessage="#{bundle.EditTourRequiredMessage_vehiclesId}">
+                            <f:selectItems value="#{vehicleController.itemsAvailableSelectOne}"
+                                           var="vehiclesIdItem"
+                                           itemValue="#{vehiclesIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tourController.create}" value="#{bundle.Save}" update="display,:TourListForm:datalist,:growl" oncomplete="handleSubmit(args,'TourCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TourCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

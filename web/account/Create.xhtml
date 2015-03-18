@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear Cuenta">
+            <p:scrollPanel mode="native" style="max-height:500px">
+                <h:form id="AccountCreateForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
+                            <p:outputLabel value="id de cuenta" for="id" />
+                            <p:inputText id="id" value="#{accountController.selected.id}" title="#{bundle.CreateAccountTitle_id}" required="true" requiredMessage="#{bundle.CreateAccountRequiredMessage_id}" disabled="true"/>
+                            <p:outputLabel value="nombre" for="name" />
+                            <p:inputText id="name" value="#{accountController.selected.name}" title="#{bundle.CreateAccountTitle_name}" />
+                            <p:outputLabel value="descripción" for="description" />
+                            <p:inputTextarea rows="4" cols="30" id="description" value="#{accountController.selected.description}" title="#{bundle.CreateAccountTitle_description}" />
+                            <p:outputLabel value="tipo" for="accountType" />
+                            <p:selectOneMenu id="accountType" value="#{accountController.selected.accountType}"  >                            
+                                <f:selectItem itemLabel="Cliente" itemValue="cliente" />
+                                <f:selectItem itemLabel="Partner" itemValue="partner" />
+                                <f:selectItem itemLabel="Revendedor" itemValue="revendedor" />
+                                <f:selectItem itemLabel="Prospecto" itemValue="prospecto" />
+                                <f:selectItem itemLabel="Integrador" itemValue="integrador" />
+                                <f:selectItem itemLabel="Competidor" itemValue="competidor" />
+                                <f:selectItem itemLabel="Otro" itemValue="otro" />
+                            </p:selectOneMenu>
+                            <p:outputLabel value="industria" for="industry" />
+                            <p:inputText id="industry" value="#{accountController.selected.industry}" title="#{bundle.CreateAccountTitle_industry}" />
+                            <p:outputLabel value="telef oficina" for="phoneOffice" />
+                            <p:inputText id="phoneOffice" value="#{accountController.selected.phoneOffice}" title="#{bundle.CreateAccountTitle_phoneOffice}" />
+                            <p:outputLabel value="telef alternativo" for="phoneAlternate" />
+                            <p:inputText id="phoneAlternate" value="#{accountController.selected.phoneAlternate}" title="#{bundle.CreateAccountTitle_phoneAlternate}" />                            
+                            <p:outputLabel value="fax" for="phoneFax" />
+                            <p:inputText id="phoneFax" value="#{accountController.selected.phoneFax}" title="#{bundle.CreateAccountTitle_phoneFax}" />
+                            <p:outputLabel value="calle" for="billingAddressStreet" />
+                            <p:inputText id="billingAddressStreet" value="#{accountController.selected.billingAddressStreet}" title="#{bundle.CreateAccountTitle_billingAddressStreet}" />
+                            <p:outputLabel value="ciudad" for="billingAddressCity" />
+                            <p:inputText id="billingAddressCity" value="#{accountController.selected.billingAddressCity}" title="#{bundle.CreateAccountTitle_billingAddressCity}" />
+                            <p:outputLabel value="provincia" for="billingAddressState" />
+                            <p:inputText id="billingAddressState" value="#{accountController.selected.billingAddressState}" title="#{bundle.CreateAccountTitle_billingAddressState}" />
+                            <p:outputLabel value="pais" for="billingAddressCountry" />
+                            <p:inputText id="billingAddressCountry" value="#{accountController.selected.billingAddressCountry}" title="#{bundle.CreateAccountTitle_billingAddressCountry}" />
+                            <p:outputLabel value="sitio web" for="website" />
+                            <p:inputText id="website" value="#{accountController.selected.website}" title="#{bundle.CreateAccountTitle_website}" />
+                            <p:outputLabel value="usuario asignado" for="assignedUserId" />
+                            <p:selectOneMenu id="assignedUserId" value="#{accountController.selected.assignedUserId}" required="true" requiredMessage="#{bundle.EditAccountRequiredMessage_assignedUserId}">
+                                <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                               var="assignedUserIdItem"
+                                               itemValue="#{assignedUserIdItem}"
+                                               itemLabel="#{assignedUserIdItem.userLogin}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:commandButton actionListener="#{accountController.create}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountCreateDialog');"/>
+                        <p:commandButton value="#{bundle.Cancel}" onclick="AccountCreateDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:scrollPanel>
+        </p:dialog>
+
+    </ui:composition>
+</html>

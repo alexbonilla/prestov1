@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TourViewDlg" widgetVar="TourViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTourTitle}">
+            <h:form id="TourViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tourController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTourLabel_id}"/>
+                        <h:outputText value="#{tourController.selected.id}" title="#{bundle.ViewTourTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTourLabel_odometerStart}"/>
+                        <h:outputText value="#{tourController.selected.odometerStart}" title="#{bundle.ViewTourTitle_odometerStart}"/>
+                        <h:outputText value="#{bundle.ViewTourLabel_odometerEnd}"/>
+                        <h:outputText value="#{tourController.selected.odometerEnd}" title="#{bundle.ViewTourTitle_odometerEnd}"/>
+                        <h:outputText value="#{bundle.ViewTourLabel_tourDate}"/>
+                        <h:outputText value="#{tourController.selected.tourDate}" title="#{bundle.ViewTourTitle_tourDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTourLabel_observations}"/>
+                        <h:outputText value="#{tourController.selected.observations}" title="#{bundle.ViewTourTitle_observations}"/>
+                        <h:outputText value="#{bundle.ViewTourLabel_dateEntered}"/>
+                        <h:outputText value="#{tourController.selected.dateEntered}" title="#{bundle.ViewTourTitle_dateEntered}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTourLabel_dateModified}"/>
+                        <h:outputText value="#{tourController.selected.dateModified}" title="#{bundle.ViewTourTitle_dateModified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTourLabel_createdBy}"/>
+                        <h:outputText value="#{tourController.selected.createdBy}" title="#{bundle.ViewTourTitle_createdBy}"/>
+                        <h:outputText value="#{bundle.ViewTourLabel_modifiedUserId}"/>
+                        <h:outputText value="#{tourController.selected.modifiedUserId}" title="#{bundle.ViewTourTitle_modifiedUserId}"/>
+                        <h:outputText value="#{bundle.ViewTourLabel_vehiclesId}"/>
+                        <h:outputText value="#{tourController.selected.vehiclesId}" title="#{bundle.ViewTourTitle_vehiclesId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TourViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

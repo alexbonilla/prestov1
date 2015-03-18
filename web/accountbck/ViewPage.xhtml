@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountViewDlg" widgetVar="AccountViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Ver Cuenta">
+            <p:scrollPanel mode="native" style="max-height:700px">
+                <h:form id="AccountViewForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
+                            <h:outputText value="id de cuenta"/>
+                            <h:outputText value="#{accountController.selected.id}" title="#{bundle.ViewAccountTitle_id}"/>
+                            <h:outputText value="nombre"/>
+                            <h:outputText value="#{accountController.selected.name}" title="#{bundle.ViewAccountTitle_name}"/>
+                            <h:outputText value="descripción"/>
+                            <h:outputText value="#{accountController.selected.description}" title="#{bundle.ViewAccountTitle_description}"/>
+                            <h:outputText value="tipo"/>
+                            <h:outputText value="#{accountController.selected.accountType}" title="#{bundle.ViewAccountTitle_accountType}"/>
+                            <h:outputText value="industria"/>
+                            <h:outputText value="#{accountController.selected.industry}" title="#{bundle.ViewAccountTitle_industry}"/>
+                            <h:outputText value="fax"/>
+                            <h:outputText value="#{accountController.selected.phoneFax}" title="#{bundle.ViewAccountTitle_phoneFax}"/>
+                            <h:outputText value="calle"/>
+                            <h:outputText value="#{accountController.selected.billingAddressStreet}" title="#{bundle.ViewAccountTitle_billingAddressStreet}"/>
+                            <h:outputText value="ciudad"/>
+                            <h:outputText value="#{accountController.selected.billingAddressCity}" title="#{bundle.ViewAccountTitle_billingAddressCity}"/>
+                            <h:outputText value="provincia"/>
+                            <h:outputText value="#{accountController.selected.billingAddressState}" title="#{bundle.ViewAccountTitle_billingAddressState}"/>
+                            <h:outputText value="pais"/>
+                            <h:outputText value="#{accountController.selected.billingAddressCountry}" title="#{bundle.ViewAccountTitle_billingAddressCountry}"/>
+                            <h:outputText value="oficina"/>
+                            <h:outputText value="#{accountController.selected.phoneOffice}" title="#{bundle.ViewAccountTitle_phoneOffice}"/>
+                            <h:outputText value="alternativo"/>
+                            <h:outputText value="#{accountController.selected.phoneAlternate}" title="#{bundle.ViewAccountTitle_phoneAlternate}"/>
+                            <h:outputText value="sitio web"/>
+                            <h:outputText value="#{accountController.selected.website}" title="#{bundle.ViewAccountTitle_website}"/>
+                            <h:outputText value="fecha creación"/>
+                            <h:outputText value="#{accountController.selected.dateEntered}" title="#{bundle.ViewAccountTitle_dateEntered}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="fecha modificación"/>
+                            <h:outputText value="#{accountController.selected.dateModified}" title="#{bundle.ViewAccountTitle_dateModified}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="usuario asignado"/>
+                            <h:outputText value="#{accountController.selected.assignedUserId.userLogin}" title="#{bundle.ViewAccountTitle_assignedUserId}"/>
+                            <h:outputText value="creado por"/>
+                            <h:outputText value="#{accountController.selected.createdBy.userLogin}" title="#{bundle.ViewAccountTitle_createdBy}"/>
+                            <h:outputText value="modificado por"/>
+                            <h:outputText value="#{accountController.selected.modifiedUserId.userLogin}" title="#{bundle.ViewAccountTitle_modifiedUserId}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="#{bundle.Close}" onclick="AccountViewDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:scrollPanel>
+        </p:dialog>
+
+    </ui:composition>
+</html>

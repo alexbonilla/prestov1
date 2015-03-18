@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VisitViewDlg" widgetVar="VisitViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewVisitTitle}">
+            <h:form id="VisitViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{visitController.selected != null}">
+                        <h:outputText value="#{bundle.ViewVisitLabel_visitStart}"/>
+                        <h:outputText value="#{visitController.selected.visitStart}" title="#{bundle.ViewVisitTitle_visitStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVisitLabel_visitEnd}"/>
+                        <h:outputText value="#{visitController.selected.visitEnd}" title="#{bundle.ViewVisitTitle_visitEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVisitLabel_observations}"/>
+                        <h:outputText value="#{visitController.selected.observations}" title="#{bundle.ViewVisitTitle_observations}"/>
+                        <h:outputText value="#{bundle.ViewVisitLabel_dateEntered}"/>
+                        <h:outputText value="#{visitController.selected.dateEntered}" title="#{bundle.ViewVisitTitle_dateEntered}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVisitLabel_dateModified}"/>
+                        <h:outputText value="#{visitController.selected.dateModified}" title="#{bundle.ViewVisitTitle_dateModified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVisitLabel_case1}"/>
+                        <h:outputText value="#{visitController.selected.case1}" title="#{bundle.ViewVisitTitle_case1}"/>
+                        <h:outputText value="#{bundle.ViewVisitLabel_tour}"/>
+                        <h:outputText value="#{visitController.selected.tour}" title="#{bundle.ViewVisitTitle_tour}"/>
+                        <h:outputText value="#{bundle.ViewVisitLabel_createdBy}"/>
+                        <h:outputText value="#{visitController.selected.createdBy}" title="#{bundle.ViewVisitTitle_createdBy}"/>
+                        <h:outputText value="#{bundle.ViewVisitLabel_modifiedUserId}"/>
+                        <h:outputText value="#{visitController.selected.modifiedUserId}" title="#{bundle.ViewVisitTitle_modifiedUserId}"/>
+                        <h:outputText value="#{bundle.ViewVisitLabel_filledBy}"/>
+                        <h:outputText value="#{visitController.selected.filledBy}" title="#{bundle.ViewVisitTitle_filledBy}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VisitViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

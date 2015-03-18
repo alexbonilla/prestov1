@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAccountTitle}">
+            <p:scrollPanel mode="native" style="max-height:500px">
+                <h:form id="AccountCreateForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{accountController.selected.id}" title="#{bundle.CreateAccountTitle_id}" required="true" requiredMessage="#{bundle.CreateAccountRequiredMessage_id}"/>
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{accountController.selected.name}" title="#{bundle.CreateAccountTitle_name}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_description}" for="description" />
+                            <p:inputTextarea rows="4" cols="30" id="description" value="#{accountController.selected.description}" title="#{bundle.CreateAccountTitle_description}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_accountType}" for="accountType" />
+                            <p:inputText id="accountType" value="#{accountController.selected.accountType}" title="#{bundle.CreateAccountTitle_accountType}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_industry}" for="industry" />
+                            <p:inputText id="industry" value="#{accountController.selected.industry}" title="#{bundle.CreateAccountTitle_industry}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_phoneFax}" for="phoneFax" />
+                            <p:inputText id="phoneFax" value="#{accountController.selected.phoneFax}" title="#{bundle.CreateAccountTitle_phoneFax}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_billingAddressStreet}" for="billingAddressStreet" />
+                            <p:inputText id="billingAddressStreet" value="#{accountController.selected.billingAddressStreet}" title="#{bundle.CreateAccountTitle_billingAddressStreet}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_billingAddressCity}" for="billingAddressCity" />
+                            <p:inputText id="billingAddressCity" value="#{accountController.selected.billingAddressCity}" title="#{bundle.CreateAccountTitle_billingAddressCity}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_billingAddressState}" for="billingAddressState" />
+                            <p:inputText id="billingAddressState" value="#{accountController.selected.billingAddressState}" title="#{bundle.CreateAccountTitle_billingAddressState}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_billingAddressCountry}" for="billingAddressCountry" />
+                            <p:inputText id="billingAddressCountry" value="#{accountController.selected.billingAddressCountry}" title="#{bundle.CreateAccountTitle_billingAddressCountry}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_phoneOffice}" for="phoneOffice" />
+                            <p:inputText id="phoneOffice" value="#{accountController.selected.phoneOffice}" title="#{bundle.CreateAccountTitle_phoneOffice}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_phoneAlternate}" for="phoneAlternate" />
+                            <p:inputText id="phoneAlternate" value="#{accountController.selected.phoneAlternate}" title="#{bundle.CreateAccountTitle_phoneAlternate}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_website}" for="website" />
+                            <p:inputText id="website" value="#{accountController.selected.website}" title="#{bundle.CreateAccountTitle_website}" />
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_dateEntered}" for="dateEntered" />
+                            <p:calendar id="dateEntered" pattern="MM/dd/yyyy HH:mm:ss" value="#{accountController.selected.dateEntered}" title="#{bundle.EditAccountTitle_dateEntered}"  showOn="button"/>
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_dateModified}" for="dateModified" />
+                            <p:calendar id="dateModified" pattern="MM/dd/yyyy HH:mm:ss" value="#{accountController.selected.dateModified}" title="#{bundle.EditAccountTitle_dateModified}"  showOn="button"/>
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_assignedUserId}" for="assignedUserId" />
+                            <p:selectOneMenu id="assignedUserId" value="#{accountController.selected.assignedUserId}" required="true" requiredMessage="#{bundle.EditAccountRequiredMessage_assignedUserId}">
+                                <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                               var="assignedUserIdItem"
+                                               itemValue="#{assignedUserIdItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_createdBy}" for="createdBy" />
+                            <p:selectOneMenu id="createdBy" value="#{accountController.selected.createdBy}" required="true" requiredMessage="#{bundle.EditAccountRequiredMessage_createdBy}">
+                                <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                               var="createdByItem"
+                                               itemValue="#{createdByItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateAccountLabel_modifiedUserId}" for="modifiedUserId" />
+                            <p:selectOneMenu id="modifiedUserId" value="#{accountController.selected.modifiedUserId}" >
+                                <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                               var="modifiedUserIdItem"
+                                               itemValue="#{modifiedUserIdItem}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:commandButton actionListener="#{accountController.create}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountCreateDialog');"/>
+                        <p:commandButton value="#{bundle.Cancel}" onclick="AccountCreateDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:scrollPanel>
+        </p:dialog>
+
+    </ui:composition>
+</html>

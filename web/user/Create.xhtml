@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserCreateDlg" widgetVar="UserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUserTitle}">
+            <p:scrollPanel mode="native" style="max-height:500px">
+                <h:form id="UserCreateForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{userController.selected != null}">
+                            <p:outputLabel value="#{bundle.CreateUserLabel_id}" for="id" />
+                            <p:inputText id="id" value="#{userController.selected.id}" title="#{bundle.CreateUserTitle_id}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_id}" disabled="true"/>
+                            <p:outputLabel value="#{bundle.CreateUserLabel_pwd}" for="matchGrid" />                            
+
+                            <p:panelGrid id="matchGrid" columns="1" rendered="#{userController.selected != null}">                                
+                                <p:password feedback="true" inline="true"  id="pwd1" value="#{userController.newpassword}" title="#{bundle.CreateUserTitle_pwd}" placeholder="Nueva clave" required="true" match="pwd2"/>                        
+                                <p:password feedback="false" id="pwd2" value="#{userController.newpassword}" title="#{bundle.CreateUserTitle_pwd}" placeholder="Confirmar clave" required="true"/>                                                    
+                            </p:panelGrid>
+
+                            <p:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_roles}" for="roles" />
+                            <p:inputText id="roles" value="#{userController.selected.roles}" title="#{bundle.CreateUserTitle_roles}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_logo}" for="logo" />
+                            <p:inputTextarea rows="4" cols="30" id="logo" value="#{userController.selected.logo}" title="#{bundle.CreateUserTitle_logo}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_firstName}" for="firstName" />
+                            <p:inputText id="firstName" value="#{userController.selected.firstName}" title="#{bundle.CreateUserTitle_firstName}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_lastName}" for="lastName" />
+                            <p:inputText id="lastName" value="#{userController.selected.lastName}" title="#{bundle.CreateUserTitle_lastName}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_userLogin}" for="userLogin" />
+                            <p:inputText id="userLogin" value="#{userController.selected.userLogin}" title="#{bundle.CreateUserTitle_userLogin}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_description}" for="description" />
+                            <p:inputTextarea rows="4" cols="30" id="description" value="#{userController.selected.description}" title="#{bundle.CreateUserTitle_description}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_isAdmin}" for="isAdmin" />
+                            <p:selectBooleanCheckbox id="isAdmin" value="#{userController.selected.isAdmin}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_department}" for="department" />
+                            <p:inputText id="department" value="#{userController.selected.department}" title="#{bundle.CreateUserTitle_department}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_phoneHome}" for="phoneHome" />
+                            <p:inputText id="phoneHome" value="#{userController.selected.phoneHome}" title="#{bundle.CreateUserTitle_phoneHome}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_phoneMobile}" for="phoneMobile" />
+                            <p:inputText id="phoneMobile" value="#{userController.selected.phoneMobile}" title="#{bundle.CreateUserTitle_phoneMobile}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_phoneWork}" for="phoneWork" />
+                            <p:inputText id="phoneWork" value="#{userController.selected.phoneWork}" title="#{bundle.CreateUserTitle_phoneWork}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_phoneOther}" for="phoneOther" />
+                            <p:inputText id="phoneOther" value="#{userController.selected.phoneOther}" title="#{bundle.CreateUserTitle_phoneOther}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_phoneFax}" for="phoneFax" />
+                            <p:inputText id="phoneFax" value="#{userController.selected.phoneFax}" title="#{bundle.CreateUserTitle_phoneFax}" />
+                            <p:outputLabel value="#{bundle.CreateUserLabel_status}" for="status" />
+                            <p:inputText id="status" value="#{userController.selected.status}" title="#{bundle.CreateUserTitle_status}" />
+                        </p:panelGrid>
+                        <p:commandButton actionListener="#{userController.create}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserCreateDialog');"/>
+                        <p:commandButton value="#{bundle.Cancel}" onclick="UserCreateDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:scrollPanel>    
+        </p:dialog>
+
+    </ui:composition>
+</html>

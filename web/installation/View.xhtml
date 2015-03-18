@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InstallationViewDlg" widgetVar="InstallationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInstallationTitle}">
+            <h:form id="InstallationViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{installationController.selected != null}">
+                        <h:outputText value="#{bundle.ViewInstallationLabel_id}"/>
+                        <h:outputText value="#{installationController.selected.id}" title="#{bundle.ViewInstallationTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_name}"/>
+                        <h:outputText value="#{installationController.selected.name}" title="#{bundle.ViewInstallationTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_description}"/>
+                        <h:outputText value="#{installationController.selected.description}" title="#{bundle.ViewInstallationTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_province}"/>
+                        <h:outputText value="#{installationController.selected.province}" title="#{bundle.ViewInstallationTitle_province}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_placeName}"/>
+                        <h:outputText value="#{installationController.selected.placeName}" title="#{bundle.ViewInstallationTitle_placeName}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_dateEntered}"/>
+                        <h:outputText value="#{installationController.selected.dateEntered}" title="#{bundle.ViewInstallationTitle_dateEntered}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_dateModified}"/>
+                        <h:outputText value="#{installationController.selected.dateModified}" title="#{bundle.ViewInstallationTitle_dateModified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_accountsId}"/>
+                        <h:outputText value="#{installationController.selected.accountsId}" title="#{bundle.ViewInstallationTitle_accountsId}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_projectsId}"/>
+                        <h:outputText value="#{installationController.selected.projectsId}" title="#{bundle.ViewInstallationTitle_projectsId}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_createdBy}"/>
+                        <h:outputText value="#{installationController.selected.createdBy}" title="#{bundle.ViewInstallationTitle_createdBy}"/>
+                        <h:outputText value="#{bundle.ViewInstallationLabel_modifiedUserId}"/>
+                        <h:outputText value="#{installationController.selected.modifiedUserId}" title="#{bundle.ViewInstallationTitle_modifiedUserId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InstallationViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

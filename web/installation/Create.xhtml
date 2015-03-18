@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InstallationCreateDlg" widgetVar="InstallationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInstallationTitle}">
+            <h:form id="InstallationCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{installationController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{installationController.selected.id}" title="#{bundle.CreateInstallationTitle_id}" required="true" requiredMessage="#{bundle.CreateInstallationRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{installationController.selected.name}" title="#{bundle.CreateInstallationTitle_name}" />
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_description}" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{installationController.selected.description}" title="#{bundle.CreateInstallationTitle_description}" />
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_province}" for="province" />
+                        <p:inputText id="province" value="#{installationController.selected.province}" title="#{bundle.CreateInstallationTitle_province}" />
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_placeName}" for="placeName" />
+                        <p:inputText id="placeName" value="#{installationController.selected.placeName}" title="#{bundle.CreateInstallationTitle_placeName}" />
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_dateEntered}" for="dateEntered" />
+                        <p:calendar id="dateEntered" pattern="MM/dd/yyyy HH:mm:ss" value="#{installationController.selected.dateEntered}" title="#{bundle.EditInstallationTitle_dateEntered}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_dateModified}" for="dateModified" />
+                        <p:calendar id="dateModified" pattern="MM/dd/yyyy HH:mm:ss" value="#{installationController.selected.dateModified}" title="#{bundle.EditInstallationTitle_dateModified}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_accountsId}" for="accountsId" />
+                        <p:selectOneMenu id="accountsId" value="#{installationController.selected.accountsId}" required="true" requiredMessage="#{bundle.EditInstallationRequiredMessage_accountsId}">
+                            <f:selectItems value="#{accountController.itemsAvailableSelectOne}"
+                                           var="accountsIdItem"
+                                           itemValue="#{accountsIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_projectsId}" for="projectsId" />
+                        <p:selectOneMenu id="projectsId" value="#{installationController.selected.projectsId}" required="true" requiredMessage="#{bundle.EditInstallationRequiredMessage_projectsId}">
+                            <f:selectItems value="#{projectController.itemsAvailableSelectOne}"
+                                           var="projectsIdItem"
+                                           itemValue="#{projectsIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_createdBy}" for="createdBy" />
+                        <p:selectOneMenu id="createdBy" value="#{installationController.selected.createdBy}" required="true" requiredMessage="#{bundle.EditInstallationRequiredMessage_createdBy}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="createdByItem"
+                                           itemValue="#{createdByItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateInstallationLabel_modifiedUserId}" for="modifiedUserId" />
+                        <p:selectOneMenu id="modifiedUserId" value="#{installationController.selected.modifiedUserId}" >
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="modifiedUserIdItem"
+                                           itemValue="#{modifiedUserIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{installationController.create}" value="#{bundle.Save}" update="display,:InstallationListForm:datalist,:growl" oncomplete="handleSubmit(args,'InstallationCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InstallationCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

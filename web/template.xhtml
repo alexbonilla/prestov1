@@ -19,11 +19,12 @@
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
                 <h:form id="menuForm">
                     <p:menubar>                        
-                        <p:menuitem value="Inicio" outcome="/index" icon="ui-icon-home"/>
+                        <p:menuitem value="Inicio" outcome="/case/List.xhtml" icon="ui-icon-home"/>
                         <p:submenu label="Soporte">                            
                             <p:menuitem value="Cuentas" outcome="/account/List.xhtml" />
                             <p:menuitem value="Contactos" outcome="/contact/List.xhtml" />
                             <p:menuitem value="Casos" outcome="/case/List.xhtml" />
+                            <p:menuitem value="Vehiculos" outcome="/vehicle/List.xhtml" />
                         </p:submenu>
                         <p:submenu label="Admin" rendered="#{loginBean.thisSessionUser.isAdmin}">
                             <p:menuitem value="Usuarios" outcome="/user/List.xhtml"/>
